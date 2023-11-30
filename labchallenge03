@@ -1,0 +1,23 @@
+#!/bin/bash
+# worked with peers and used bash
+# Prompt user for input directory path
+read -p "Enter the directory path: " dir_path
+
+# Prompt user for input permissions number
+read -p "Enter the permissions number (e.g., 777): " permissions_num
+
+# Check if the directory exists
+if [ ! -d "$dir_path" ]; then
+    echo "Error: Directory '$dir_path' does not exist."
+    exit 1
+fi
+
+# Change file permissions in the specified directory
+cd "$dir_path"
+for file in *; do
+    chmod "$permissions_num" "$file"
+done
+
+# Display the directory contents and new permissions settings
+echo "Directory contents and new permissions settings:"
+ls -la
