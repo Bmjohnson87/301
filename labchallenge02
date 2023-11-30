@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#Create a bash script that:
+
+# variables
+current_DT=$(date +"%m-%d-%Y_H%-%M-%S")
+file="/var/log/syslog"
+
+
+
+# Copies /var/log/syslog to the current working directory
+# Appends the current date and time to the filename
+cp "$file" "syslog_$current_DT.log"
+
+
+cp "$file" "syslog_$current_DT.log"
