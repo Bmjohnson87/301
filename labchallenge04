@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Define menu options
+options=("Hello world" "Ping self" "IP info" "Exit")
+
+# Display the menu and accept user input
+while :; do
+  clear
+  echo "Welcome to the menu system!"
+  PS3="Please select an option: "
+  select option in "${options[@]}"; do
+    case $option in
+      "Hello world")
+        echo "Hello world!"
+        break
+        ;;
+      "Ping self")
+        ping -c 4 localhost
+        break
+        ;;
+      "IP info")
+        ifconfig
+        break
+        ;;
+      "Exit")
+        echo "Exiting..."
+        exit 0
+        ;;
+      *)
+        echo "Invalid option. Please try again."
+        break
+        ;;
+    esac
+  done
+  read -r -p "Press Enter to continue..."
+done
