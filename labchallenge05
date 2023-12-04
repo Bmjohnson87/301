@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Get the current timestamp
+timestamp=$(date +%Y%m%d%H%M%S)
+
+# Print the file size of the log files before compression
+echo "Original file sizes:"
+echo "syslog size: $(du -b /var/log/syslog)"
+echo "wtmp size: $(du -b /var/log/wtmp)"
+
+# Compress the contents of the log files to a backup directory
+mkdir -p /var/log/backups
+gzip -c /var/log/syslog > /var/log/backups/syslog-$timestamp.zip
+gzip -c /var/log/wtmp > /var/log/backups/wtmp-$timestamp.zip
+
+# Clear the contents of the log files
+echo "Clearing log files..."
+cat /dev/null > /var/log/syslog
+cat /dev/null > /var/log/wtmp
+
+# Print to screen the file size of the compressed file
+echo "Compressed file sizes:"
+echo "syslog-20220928081457.zip size: $(du -b /var/log/backups/syslog-$timestamp.zip)"
+echo "wtmp-20220928081457.zip size: $(du -b /var/log/backups/wtmp-$timestamp.zip)"
+
+# Compare the size of the compressed files to the size of the original log files
+echo "Comparison of compressed and original file sizes:"
+echo "syslog: $(du -b /var/log/backups/syslog-$timestamp.zip) vs $(du -b /var/log/syslog)"
+echo "wtmp: $(du -b /var/log/backups/wtmp-$timestamp.zip) vs $(du -b /var/log/wtmp)"
