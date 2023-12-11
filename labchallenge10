@@ -1,0 +1,20 @@
+# Define file path
+file_path = "my_file.txt"
+
+# Create a new .txt file
+with open(file_path, "w") as f:
+    # Append three lines
+    f.write("This is the first line.\n")
+    f.write("This is the second line.\n")
+    f.write("This is the third line.\n")
+
+# Print the first line to the screen
+with open(file_path, "r") as f:
+    first_line = f.readline()
+    print(f"First line: {first_line}")
+
+# Delete the .txt file
+import os
+os.remove(file_path)
+
+print(f"File '{file_path}' deleted successfully.")
