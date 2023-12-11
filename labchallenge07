@@ -1,28 +1,33 @@
 #!/usr/bin/env python3
 
 # Import libraries
-
 import os
 
 # Declaration of variables
-file_path = input("Please enter the file path: ")
-
-### Read user input here into a variable
+# This line The variable user_path is declared and initialized with an empty string. It will store the directory path provided by the user
+user_path = ""
 
 # Declaration of functions
-
-### Declare a function here
-
-for (root, dirs, files) in os.walk("testdir"):
-    ### Add a print command here to print ==root==
-    print(root)
-    ### Add a print command here to print ==dirs==
-    print(dirs)
-    ### Add a print command here to print ==files==
-    print(files)
+# This line has the function is named generate_directory_tree and it takes one argument, path, which represents the directory path to be analyzed
+def generate_directory_tree(path):
+  # This line is a docstring. It provides a brief description of what the function does
+  """This function takes a directory path as input and prints all directories, sub-directories and files."""
+ # The os.walk function returns a tuple containing three elements:
+ # root: The current directory being processed
+ # directories: A list of all directories in the current directory
+ # files: A list of all files in the current directory
+  for (root, directories, files) in os.walk(path):
+    print(f"== {root} ==")
+    for directory in directories:
+      print(f"\tDirectory: {directory}")
+    for file in files:
+      print(f"\t\tFile: {file}")
 
 # Main
+# The script prompts the user to enter a directory path and stores it in the user_path variable
+user_path = input("Enter the directory path: ")
 
-### Pass the variable into the function here
+# Pass the user input path to the function
+# This line calls the generate_directory_tree function and passes the user-provided path (user_path) as an argument
+generate_directory_tree(user_path)
 
-# End
