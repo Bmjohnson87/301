@@ -1,4 +1,4 @@
-# Basic comparisons
+# help from classmate T.Taylor and bard to understand
 
 a = 5
 b = 10
